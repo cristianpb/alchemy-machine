@@ -19,7 +19,7 @@ The file `core.js` contains the angularjs module, `index.html` contains the exte
 # Installation
 
 * Make sure you have [Node](https://nodejs.org/en/) and [npm](https://www.npmjs.com/) installed
-* Clone the repo: git clone git@github.com:cristianpb/alchemy-machine.git
-* Install the application: npm install
-* Start the server: node server.js
+* Clone the repo: `git clone git@github.com:cristianpb/alchemy-machine.git`
+* Install the application: `npm install`
+* Start the server: `node server.js`
 * View in your browser at http://localhost:8080
