@@ -1,0 +1,76 @@
+<!-- index.html -->
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="alchemyMachine">
+  <head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+    <title>The Alchemy Machine</title>
+
+    <!-- SCROLLS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+    <style>
+#inline_images {display: inline-block;}
+html                    { overflow-y:scroll; }
+body                    { padding-top:50px; }
+#ingredient-list              { margin-bottom:30px; }
+    </style>
+
+    <!-- SPELLS -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
+    <script src="core.js"></script>
+
+  </head>
+  <!-- SET THE CONTROLLER AND GET ALL INFO -->
+  <body ng-controller="mainController">
+    <div class="container">
+
+      <div class="text-center">
+	<h1> The alchemy Machine </h1>
+      </div>
+
+      <div id="inline_images" ng-repeat="todo in info.Ingredients">
+	<img ng-src="{{todo.image}}" width=100 height=100/>
+      </div>
+
+      <!-- INGREDIENT AND POTION LIST -->
+      <div id="ingredient-list" class="row">
+
+	<div class="col-md-4">
+	  <div ng-show="info.Recipes">
+	    <h3> 💊 Potions made </h3>
+	  </div>
+	  <li ng-repeat="w in info.Recipes">
+	    {{w.name}}: {{w.quantity}}
+	  </li>
+	</div>
+
+	<div class="col-md-4">
+	  <h3> 🗃 Available ingredients </h3>
+	  <!-- LOOP OVER THE DATA IN $scope.info -->
+	  <div class="checkbox" ng-repeat="todo in info.Ingredients">
+	    <label>
+	      <input type="checkbox" ng-model="todo.selected" >{{ todo.text }} {{ todo.emoji.repeat(todo.quantity) }}  
+	    </label>
+	  </div>
+	  <button type="submit" class="btn btn-primary btn-lg" ng-click="createPotion()">Mix</button>
+	</div>
+
+	<div class="col-md-4">
+	  <h3> 📖 Recipes </h3>
+	  <li ng-repeat="w in info.Recipes">
+	    {{w.name}}: <i ng-repeat="e in w.ingredients">{{e}},</i>
+	  </li>
+	  <div ng-show="info.Magic[0].value">
+	    <h1>Potion:  {{ info.Magic[0].name }} ! </h1>
+	  </div>
+	</div>
+
+      </div>
+    </div>
+  </body>
+</html>
